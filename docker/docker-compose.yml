@@ -1,0 +1,34 @@
+networks:
+  ordered-builder-pattern-network:
+    name: ordered-builder-pattern-network
+    driver: bridge
+
+services:
+
+  ordered-builder-pattern-php:
+    image: ordered-builder-pattern-php
+    build: php
+    hostname: ordered_builder_pattern
+    volumes:
+      - ../:/var/www/app:delegated
+      - ./data/shell_history:/home/utente/shell_history
+    networks:
+      - ordered-builder-pattern-network
+    environment:
+      - HISTFILE=/home/utente/shell_history/.x_history
+    secrets:
+      - source: id_rsa
+        target: /home/utente/.ssh/id_rsa
+      - source: id_rsa.pub
+        target: /home/utente/.ssh/id_rsa.pub
+      - source: known_hosts
+        target: /home/utente/.ssh/known_hosts
+
+  conventional-commit-nodejs:
+    image: conventional-commit-nodejs
+    build: nodejs
+    working_dir: /var/www/app
+    volumes:
+      - ../.git:/var/www/app/.git
+    networks:
+      - ordered-builder-pattern-network

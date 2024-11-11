@@ -1,0 +1,34 @@
+{
+    "name": "matiux/php-ordered-builder-pattern",
+    "description": "A demo to explore how to force ordering in method calls in the Builder Pattern.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Matiux\\PhpOrderedBuilderPattern\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matteo Galacci",
+            "email": "m.galacci@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "matiux/php-project-autopilot": "dev-master",
+        "symfony/var-dumper": "^7.1",
+        "vimeo/psalm": "^5.26"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "bash vendor/matiux/php-project-autopilot/src/configure.sh"
+        ],
+        "post-update-cmd": [
+            "bash vendor/matiux/php-project-autopilot/src/configure.sh"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
